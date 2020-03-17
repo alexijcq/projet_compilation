@@ -30,7 +30,7 @@ public class Generateur {
 
     private String genererCode(Noeud noeud, Tds tds) {
         switch (noeud.getCat()) {
-            case Noeud.FONCTION:
+            case FONCTION:
                 System.out.println("yolo"); // appel méthode genere-fonction
                 break;
 

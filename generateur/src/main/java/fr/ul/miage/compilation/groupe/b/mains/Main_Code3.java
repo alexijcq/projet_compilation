@@ -6,7 +6,7 @@ public class Main_Code3 {
         // TODO Auto-generated constructor stub
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub
 
     }

@@ -23,7 +23,7 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/Valentin/Desktop/Compilation/projet_compilation/arbre-1.1/arbre1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/Valentin/Desktop/Compilation/projet_compilation/tds-1.0/tds1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/valen/OneDrive/Documents/Travaux_Scolaires/Portfolio/eclipse-workspace/L3/projet_compilation/tds-1.0/tds1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/valen/OneDrive/Documents/Travaux_Scolaires/Portfolio/eclipse-workspace/L3/projet_compilation/arbre-1.1/arbre1.1.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

@@ -12,14 +12,13 @@ public class Main_Code1 {
         Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
         System.out.println(tds.toString());
         
-        Noeud prog = new Prog();
-        Noeud main = new Fonction("main");
+        Prog prog = new Prog();
+        Fonction main = new Fonction("main");
         prog.ajouterUnFils(main);
         Afficheur.afficher(prog);
         
         Generateur g = new Generateur();
-        g.generate(prog,tds);
-        System.out.println(g.toString());
+        System.out.println(g.generate(prog,tds));
 
     }
 

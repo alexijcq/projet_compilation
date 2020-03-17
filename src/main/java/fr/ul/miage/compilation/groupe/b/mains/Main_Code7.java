@@ -1,9 +1,9 @@
-package fr.ul.miage.compilation.groupe.b.mains;
+package main.java.fr.ul.miage.compilation.groupe.b.mains;
 
-import fr.ul.miage.compilation.groupe.b.generateur.*;
-import fr.ul.miage.arbre.Afficheur;
-import fr.ul.miage.arbre.*;
-import fr.ul.miage.tds.*;
+import main.java.fr.ul.miage.compilation.groupe.b.generateur.*;
+import main.java.fr.ul.miage.tds.*;
+import main.java.fr.ul.miage.arbre.*;
+import main.java.fr.ul.miage.arbre.Afficheur;
 
 public class Main_Code7 {
 

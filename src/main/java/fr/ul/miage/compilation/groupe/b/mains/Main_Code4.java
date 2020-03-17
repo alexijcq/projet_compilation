@@ -1,21 +1,12 @@
-package fr.ul.miage.compilation.groupe.b.mains;
+package main.java.fr.ul.miage.compilation.groupe.b.mains;
 
-import fr.ul.miage.compilation.groupe.b.generateur.*;
-import fr.ul.miage.arbre.Afficheur;
-import fr.ul.miage.arbre.*;
-import fr.ul.miage.tds.*;
-
+import main.java.fr.ul.miage.compilation.groupe.b.generateur.*;
+import main.java.fr.ul.miage.tds.*;
+import main.java.fr.ul.miage.arbre.*;
+import main.java.fr.ul.miage.arbre.Afficheur;
 
 public class Main_Code4 {
 
-    public Main_Code4() {
-        // TODO Auto-generated constructor stub
-    }
-
-<<<<<<< HEAD
-    public static void main(String[] args) throws Exception {
-        // TODO Auto-generated method stub
-=======
     public static void main(String[] args) throws Exception  {
         Tds tds = new Tds();
         Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION,Symbole.SCOPE_GLOBAL);
@@ -51,7 +42,6 @@ public class Main_Code4 {
         
         Generateur g = new Generateur();
         g.generate(prog,tds);
->>>>>>> leurs-conneries
 
     }
 

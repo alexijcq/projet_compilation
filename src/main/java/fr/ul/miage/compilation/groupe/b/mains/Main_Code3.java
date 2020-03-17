@@ -1,9 +1,9 @@
-package fr.ul.miage.compilation.groupe.b.mains;
+package main.java.fr.ul.miage.compilation.groupe.b.mains;
 
-import fr.ul.miage.compilation.groupe.b.generateur.*;
-import fr.ul.miage.arbre.Afficheur;
-import fr.ul.miage.arbre.*;
-import fr.ul.miage.tds.*;
+import main.java.fr.ul.miage.compilation.groupe.b.generateur.*;
+import main.java.fr.ul.miage.tds.*;
+import main.java.fr.ul.miage.arbre.*;
+import main.java.fr.ul.miage.arbre.Afficheur;
 
 public class Main_Code3 {
 
@@ -39,10 +39,6 @@ public class Main_Code3 {
         aff3_2.setFilsDroit(c3_2);
         main.ajouterUnFils(aff3_2);
 
-<<<<<<< HEAD
-    public static void main(String[] args) throws Exception {
-        // TODO Auto-generated method stub
-=======
         Affectation aff3_3 = new Affectation();
         Const c3_3 = new Const(3);
         aff3_3.setFilsGauche(l3);
@@ -54,7 +50,6 @@ public class Main_Code3 {
         add3.setFilsDroit(mul3);
         aff3_3.setFilsDroit(add3);
         main.ajouterUnFils(aff3_3);
->>>>>>> leurs-conneries
 
         prog.ajouterUnFils(main);
         Afficheur.afficher(prog);

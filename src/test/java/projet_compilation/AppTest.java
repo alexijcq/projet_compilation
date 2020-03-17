@@ -1,4 +1,4 @@
-package projet_compilation;
+package test.java.projet_compilation;
 
 import org.junit.Test;
 

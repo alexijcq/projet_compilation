@@ -126,7 +126,7 @@ public class Generateur {
     	for (int i = 0; i < noeud.getFils().size(); i++) {
             resultat += genererCode(noeud.getFils().get(i),tds);
         }
-        return resultat+="|Fin Bloc\n";
+        return resultat+="\t|Fin Bloc\n";
     }
 
 	private String genererAffectation(Noeud noeud,Tds tds) {
@@ -143,14 +143,18 @@ public class Generateur {
 
 	private String genererSi(Noeud noeud,Tds tds) {
 	    String resultat = "\n\t|Génération du Si\n";
-		resultat += genererCode(noeud.getFils().get(0),tds)
+	    Si s = new Si(0);
+        if(noeud instanceof Si) {
+            s = (Si) noeud;
+        }
+		resultat += genererCode(s.getFils().get(0),tds)
 				+ "\tPOP(R0)\n"
-				+ "\tBF(R0, sinon)\n"
-				+ genererBloc(noeud.getFils().get(1),tds)
-				+ "\tJPM(fsi)\n"
-				+ "sinon :\n"
-				+ genererBloc(noeud.getFils().get(2),tds)
-				+ "fsi : |Fin Si\n";
+				+ "\tBF(R0, sinon"+s.getValeur()+")\n"
+				+ genererBloc(s.getFils().get(1),tds)
+				+ "\tJPM(fsi"+s.getValeur()+")\n"
+				+ "sinon"+s.getValeur()+" :\n"
+				+ genererBloc(s.getFils().get(2),tds)
+				+ "fsi"+s.getValeur()+" : |Fin Si\n";
 		return resultat;
 	}
 
@@ -160,13 +164,13 @@ public class Generateur {
         if (noeud instanceof TantQue) {
             tq = (TantQue) noeud;
         }
-		resultat += "boucle : \n"
+		resultat += "boucle"+tq.getValeur()+" : \n"
 		        + genererCode(tq.getCondition(),tds)
 		        + "\tPOP(r0)\n"
-		        + "\tBF(r0, finboucle)\n"
+		        + "\tBF(r0, finboucle"+tq.getValeur()+")\n"
 		        + genererBloc(tq.getBloc(),tds)
-		        + "\tJMP(boucle)\n"
-		        + "finboucle : |Fin Tant Que\n";
+		        + "\tJMP(boucle"+tq.getValeur()+")\n"
+		        + "finboucle"+tq.getValeur()+" : |Fin Tant Que\n";
 		return resultat;
 	}
 
@@ -362,7 +366,7 @@ public class Generateur {
     }
     
     private String genererDataLocal(Fonction f, Tds tds) {
-        String resultat = "\n";
+        String resultat = "";
         
         for( String k : tds.getTable().keySet()) {
             List<Symbole> i = tds.getTable().get(k);
@@ -376,7 +380,7 @@ public class Generateur {
                 }
               }
         }
-        return resultat+"\n";
+        return resultat;
     }
 
 }

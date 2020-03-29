@@ -16,7 +16,7 @@ public class Main_Code6 {
         Symbole s2 = tds.ajouter("i",Symbole.CAT_GLOBAL,Symbole.SCOPE_GLOBAL,"int");
         Symbole s3 = tds.ajouter("n",Symbole.CAT_GLOBAL,Symbole.SCOPE_GLOBAL,"int");
         s3.set_valeur(5);
-        
+        System.out.println(tds);
         
         Noeud prog = new Prog();
         Noeud main6 = new Fonction("main");
@@ -61,8 +61,7 @@ public class Main_Code6 {
         Afficheur.afficher(prog);
         
         Generateur g = new Generateur();
-        g.generate(prog,tds);
-        System.out.println(g.toString());
+        System.out.println(g.generate(prog,tds));
     }
 
 }

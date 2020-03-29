@@ -70,7 +70,6 @@ public class Main_Code8 {
         
         
         Generateur g = new Generateur();
-        g.generate(prog,tds);
-        System.out.println(g.toString());
+        System.out.println(g.generate(prog,tds));
     }
 }

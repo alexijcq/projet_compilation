@@ -33,6 +33,7 @@ public class TantQue extends NoeudInt {
 		setValeur(valeur);
 		setCat(Categories.TQ);
 		setFils(new ArrayList<Noeud>(2));
+		this.getFils().add(0, null);// vide par défaut
 		this.getFils().add(1, new Bloc());// vide par défaut
 	}
 	//methodes

@@ -51,7 +51,7 @@ public class Main_Code5 {
         Afficheur.afficher(prog);
         
         Generateur g = new Generateur();
-        g.generate(prog,tds);
+        System.out.println(g.generate(prog,tds));
     }
 
 }

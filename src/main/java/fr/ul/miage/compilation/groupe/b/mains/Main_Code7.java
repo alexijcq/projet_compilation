@@ -25,7 +25,7 @@ public class Main_Code7 {
         System.out.println(tds.toString());
     
         
-        Prog prog7 = new Prog();
+        Prog prog = new Prog();
         
         Idf a7 = new Idf("a");
         Affectation aff7 = new Affectation();
@@ -73,15 +73,14 @@ public class Main_Code7 {
         main7.ajouterUnFils(ap7);
         main7.ajouterUnFils(ec7);
         
-        prog7.ajouterUnFils(f7);
-        prog7.ajouterUnFils(main7);
+        prog.ajouterUnFils(f7);
+        prog.ajouterUnFils(main7);
 
-        Afficheur.afficher(prog7);
+        Afficheur.afficher(prog);
         
         
          Generateur g = new Generateur();
-         g.generate(prog7,tds);
-         System.out.println(g.toString());
+         System.out.println(g.generate(prog,tds));
     }
 
 }

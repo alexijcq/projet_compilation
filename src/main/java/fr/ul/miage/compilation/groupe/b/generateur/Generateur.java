@@ -29,16 +29,190 @@ public class Generateur {
     }
 
     private String genererCode(Noeud noeud, Tds tds) {
+        String resultat = "";
         switch (noeud.getCat()) {
             case FONCTION:
-                System.out.println("yolo"); // appel méthode genere-fonction
+                resultat = genererFonction(noeud, tds); 
                 break;
-
+            case PROG:
+                resultat = genererProg(noeud, tds); 
+                break;
+            case BLOC:
+                resultat = genererBloc(noeud, tds); 
+                break;
+            case AFF:
+                resultat = genererAffectation(noeud, tds); 
+                break;
+            case SI:
+                resultat = genererSi(noeud, tds);
+                break;
+            case TQ:
+                resultat = genererTantque(noeud, tds);
+                break;
+            case ECR:
+                resultat = genererEcrire(noeud, tds);
+                break;
+            case RET:
+                resultat = genererRetourne(noeud, tds);
+                break;
+            case PLUS:
+                resultat = genererPlus(noeud, tds);
+                break;
+            case MOINS:
+                resultat = genererMoins(noeud, tds);
+                break;
+            case DIV:
+                resultat = genererDiv(noeud, tds);
+                break;
+            case MUL:
+                resultat = genererMul(noeud, tds);
+                break;
+            case SUP:
+                resultat = genererSup(noeud, tds);
+                break;
+            case INF:
+                resultat = genererInf(noeud, tds);
+                break;
+            case SUPE:
+                resultat = genererSupegal(noeud, tds);
+                break;
+            case INFE:
+                resultat = genererInfegal(noeud, tds);
+                break;
+            case EG:
+                resultat = genererEgal(noeud, tds);
+                break;
+            case DIF:
+                resultat = genererDiff(noeud, tds);
+                break;
+            case IDF:
+                resultat = genererIdf(noeud, tds);
+                break;
+            case CONST:
+                resultat = genererConst(noeud, tds);
+                break;
+            case LIRE:
+                resultat = genererLire(noeud, tds);
+                break;
+            case APPEL:
+                resultat = genererAppel(noeud, tds);
+                break;
             default:
-
                 break;
         }
-        return "";
+        return resultat;
+    }
+
+
+
+    private String genererFonction(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererProg(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererBloc(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererAffectation(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererSi(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererTantque(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererEcrire(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererRetourne(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererPlus(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererMoins(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererDiv(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererMul(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererSup(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererInf(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererSupegal(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererInfegal(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererEgal(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererDiff(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererIdf(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererConst(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererLire(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    private String genererAppel(Noeud noeud, Tds tds) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     private String genererData(Tds tds) {

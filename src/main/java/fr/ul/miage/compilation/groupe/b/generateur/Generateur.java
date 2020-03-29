@@ -4,104 +4,105 @@ import main.java.fr.ul.miage.arbre.*;
 import main.java.fr.ul.miage.tds.*;
 
 public class Generateur {
-    public Generateur() {
 
-    }
+	public Generateur() {
 
-    public String generate(Noeud node, Tds tds) {
-        String resultat = "";
-        // generation des instructions de démarrages
-        resultat += ".include beta.uasm \n" + ".include intio.uasm \n" + ".options tty \n\n" + "CMOVE(pile,sp) \n"
-                + "BR(debut) \n";
+	}
 
-        // generation du code pour les symboles du tds
-        resultat += genererData(tds);
-        // appel de la fonction main
-        resultat += "debut : \n" + "\tCALL(FUNC_main) \n" + "\tHALT() \n";
-        for (int i = 0; i < node.getFils().size(); i++) {
-            // generation du code pour chaque noeud
-            resultat += genererCode(node.getFils().get(i), tds);
-        }
+	public String generate(Noeud node, Tds tds) {
+		String resultat = "";
+		// generation des instructions de démarrages
+		resultat += ".include beta.uasm \n" + ".include intio.uasm \n" + ".options tty \n\n" + "CMOVE(pile,sp) \n"
+				+ "BR(debut) \n";
 
-        resultat += "pile : \n";
+		// generation du code pour les symboles du tds
+		resultat += genererData(tds);
+		// appel de la fonction main
+		resultat += "debut : \n" + "\tCALL(FUNC_main) \n" + "\tHALT() \n";
+		for (int i = 0; i < node.getFils().size(); i++) {
+			// generation du code pour chaque noeud
+			resultat += genererCode(node.getFils().get(i), tds);
+		}
 
-        return resultat;
-    }
+		resultat += "pile : \n";
 
-    private String genererCode(Noeud noeud, Tds tds) {
-        String resultat = "";
-        switch (noeud.getCat()) {
-            case FONCTION:
-                resultat = genererFonction(noeud, tds); 
-                break;
-            case BLOC:
-                resultat = genererBloc(noeud, tds); 
-                break;
-            case AFF:
-                resultat = genererAffectation(noeud, tds); 
-                break;
-            case SI:
-                resultat = genererSi(noeud, tds);
-                break;
-            case TQ:
-                resultat = genererTantque(noeud, tds);
-                break;
-            case ECR:
-                resultat = genererEcrire(noeud, tds);
-                break;
-            case RET:
-                resultat = genererRetourne(noeud, tds);
-                break;
-            case PLUS:
-                resultat = genererPlus(noeud, tds);
-                break;
-            case MOINS:
-                resultat = genererMoins(noeud, tds);
-                break;
-            case DIV:
-                resultat = genererDiv(noeud, tds);
-                break;
-            case MUL:
-                resultat = genererMul(noeud, tds);
-                break;
-            case SUP:
-                resultat = genererSup(noeud, tds);
-                break;
-            case INF:
-                resultat = genererInf(noeud, tds);
-                break;
-            case SUPE:
-                resultat = genererSupegal(noeud, tds);
-                break;
-            case INFE:
-                resultat = genererInfegal(noeud, tds);
-                break;
-            case EG:
-                resultat = genererEgal(noeud, tds);
-                break;
-            case DIF:
-                resultat = genererDiff(noeud, tds);
-                break;
-            case IDF:
-                resultat = genererIdf(noeud, tds);
-                break;
-            case CONST:
-                resultat = genererConst(noeud, tds);
-                break;
-            case LIRE:
-                resultat = genererLire(noeud, tds);
-                break;
-            case APPEL:
-                resultat = genererAppel(noeud, tds);
-                break;
-            default:
-                break;
-        }
-        return resultat;
-    }
+		return resultat;
+	}
 
-    private String genererFonction(Noeud noeud, Tds tds) {
-        String resultat = "";
+	private String genererCode(Noeud noeud, Tds tds) {
+		String resultat = "";
+		switch (noeud.getCat()) {
+		case FONCTION:
+			resultat = genererFonction(noeud, tds); 
+			break;
+		case BLOC:
+			resultat = genererBloc(noeud, tds); 
+			break;
+		case AFF:
+			resultat = genererAffectation(noeud, tds); 
+			break;
+		case SI:
+			resultat = genererSi(noeud, tds);
+			break;
+		case TQ:
+			resultat = genererTantque(noeud, tds);
+			break;
+		case ECR:
+			resultat = genererEcrire(noeud, tds);
+			break;
+		case RET:
+			resultat = genererRetourne(noeud, tds);
+			break;
+		case PLUS:
+			resultat = genererPlus(noeud, tds);
+			break;
+		case MOINS:
+			resultat = genererMoins(noeud, tds);
+			break;
+		case DIV:
+			resultat = genererDiv(noeud, tds);
+			break;
+		case MUL:
+			resultat = genererMul(noeud, tds);
+			break;
+		case SUP:
+			resultat = genererSup(noeud, tds);
+			break;
+		case INF:
+			resultat = genererInf(noeud, tds);
+			break;
+		case SUPE:
+			resultat = genererSupegal(noeud, tds);
+			break;
+		case INFE:
+			resultat = genererInfegal(noeud, tds);
+			break;
+		case EG:
+			resultat = genererEgal(noeud, tds);
+			break;
+		case DIF:
+			resultat = genererDiff(noeud, tds);
+			break;
+		case IDF:
+			resultat = genererIdf(noeud, tds);
+			break;
+		case CONST:
+			resultat = genererConst(noeud, tds);
+			break;
+		case LIRE:
+			resultat = genererLire(noeud, tds);
+			break;
+		case APPEL:
+			resultat = genererAppel(noeud, tds);
+			break;
+		default:
+			break;
+		}
+		return resultat;
+	}
+
+	private String genererFonction(Noeud noeud, Tds tds) {
+	    String resultat = "";
         Fonction f = new Fonction("");
         if (noeud instanceof Fonction) {
             f = (Fonction) noeud;
@@ -112,31 +113,54 @@ public class Generateur {
         }
         resultat +=  "\tHALT() \n";
         return resultat;
+	}
+
+
+	private String genererBloc(Noeud noeud, Tds tds) {
+    	String resultat = "";
+    	for (int i = 0; i < noeud.getFils().size(); i++) {
+            resultat += genererCode(noeud.getFils().get(i), tds);
+        }
+        return resultat;
     }
 
-    private String genererBloc(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	private String genererAffectation(Noeud noeud, Tds tds) {
+		String resultat = "";
+		Idf i = new Idf(0);
+		if(noeud instanceof Idf) {
+			i = (Idf) noeud;
+		}
+		resultat = "\tgenererCode(noeud.getFils().get(0))\n"
+				+ "\t\tPOP(R0)\n"
+				+ "\t\tST(R0, i.getValeur())\n"; 
+		return resultat;
+	}
 
-    private String genererAffectation(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	private String genererSi(Noeud noeud, Tds tds) {
+		String resultat = "";
+		resultat = "\tgenererCode(noeud.getFils().get(0))\n"
+				+ "\tPOP(R0)\n"
+				+ "\tBF(R0, sinon)\n"
+				+ "\tgenererBloc(noeud.getFils().get(1))\n"
+				+ "\tJPM.(fsi)\n"
+				+ "\tsinon :"
+				+ "\tgenererBloc(noeud.getFils().get(2))\n"
+				+ "\tJMP.(fsi)\n";
+		return resultat;
+	}
 
-    private String genererSi(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	private String genererTantque(Noeud noeud, Tds tds) {
+		String resultat = "";
+	
+		return resultat;
+	}
 
-    private String genererTantque(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    private String genererEcrire(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+   private String genererEcrire(Noeud noeud, Tds tds) {
+    	String resultat = "";
+        resultat += genererCode(noeud.getFils().get(1), tds)
+                + "POP(r0) \n"
+        		+ "WRINT() \n";
+        return resultat;
     }
 
     private String genererRetourne(Noeud noeud, Tds tds) {
@@ -151,8 +175,14 @@ public class Generateur {
     }
 
     private String genererPlus(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat = "\tgenererCode(noeud.getFils().get(0))\n"
+                + "\tgenererCode(noeud.getFils().get(1))\n"
+                + "\tPOP(R2)\n"
+                + "\tPOP(R1)\n"
+                + "\tADD(R1, R2, R3)\n"
+                + "\tPUSH(R3)\n";
+        return resultat;
     }
 
     private String genererMoins(Noeud noeud, Tds tds) {
@@ -256,8 +286,10 @@ public class Generateur {
     }
 
     private String genererIdf(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat = "\tLD(a, val, R0) \n"
+                + "\tPUSH(R0) \n";
+        return resultat;
     }
 
     private String genererConst(Noeud noeud, Tds tds) {
@@ -272,13 +304,16 @@ public class Generateur {
     }
 
     private String genererLire(Noeud noeud, Tds tds) {
-     // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat = "\tRDINT()\n"
+                + "\tPUSH(R0)\n";
+        return resultat;
     }
 
     private String genererAppel(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+           resultat += "\tCALL(" + noeud.getLabel() + ")\n";
+           return resultat;
     }
 
     private String genererData(Tds tds) {

@@ -34,9 +34,6 @@ public class Generateur {
             case FONCTION:
                 resultat = genererFonction(noeud, tds); 
                 break;
-            case PROG:
-                resultat = genererProg(noeud, tds); 
-                break;
             case BLOC:
                 resultat = genererBloc(noeud, tds); 
                 break;
@@ -103,16 +100,11 @@ public class Generateur {
         return resultat;
     }
 
-
-
     private String genererFonction(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    private String genererProg(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += " \n"
+                + "";
+        return resultat;
     }
 
     private String genererBloc(Noeud noeud, Tds tds) {
@@ -201,12 +193,13 @@ public class Generateur {
     }
 
     private String genererConst(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat ="";
+        resultat += "CMOVE(a.val, r0) \n"
+                + "PUSH(r0) \n";
+        return resultat;
     }
 
     private String genererLire(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
         return null;
     }
 

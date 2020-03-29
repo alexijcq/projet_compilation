@@ -102,8 +102,15 @@ public class Generateur {
 
     private String genererFonction(Noeud noeud, Tds tds) {
         String resultat = "";
-        resultat += " \n"
-                + "";
+        Fonction f = new Fonction("");
+        if (noeud instanceof Fonction) {
+            f = (Fonction) noeud;
+        }
+        resultat += f.getValeur()+" : ";
+        for (int i = 0; i < noeud.getFils().size(); i++) {
+            resultat += genererCode(noeud.getFils().get(i), tds)+"\n";
+        }
+        resultat +=  "\tHALT() \n";
         return resultat;
     }
 
@@ -133,8 +140,14 @@ public class Generateur {
     }
 
     private String genererRetourne(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        Retour r = new Retour("");
+        if (noeud instanceof Retour) {
+            r = (Retour) noeud;
+        }
+        resultat += genererCode(r.getLeFils(),tds);
+        resultat = "\tPUSH(r0)\n";
+        return resultat;
     }
 
     private String genererPlus(Noeud noeud, Tds tds) {
@@ -143,48 +156,103 @@ public class Generateur {
     }
 
     private String genererMoins(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tSUB(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererDiv(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tDIV(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererMul(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tMUL(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererSup(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPLT(r1,r0,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererInf(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPLT(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererSupegal(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPLE(r1,r0,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererInfegal(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPLE(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererEgal(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPEQ(r0,r1,r2)\n"
+                + "\tPUSH(r2)";
+        return resultat;
     }
 
     private String genererDiff(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+        String resultat = "";
+        resultat += genererCode(noeud.getFils().get(0), tds);
+        resultat += genererCode(noeud.getFils().get(1), tds);
+        resultat += "\tPOP(r1)\n"
+                + "\tPOP(r0)\n"
+                + "\tCMPEQ(r0,r1,r2)\n"
+                + "\tCMPEQC(R2,0,R3)\n"
+                + "\tPUSH(r3)";
+        return resultat;
     }
 
     private String genererIdf(Noeud noeud, Tds tds) {
@@ -194,12 +262,17 @@ public class Generateur {
 
     private String genererConst(Noeud noeud, Tds tds) {
         String resultat ="";
-        resultat += "CMOVE(a.val, r0) \n"
+        Const c = new Const(0);
+        if (noeud instanceof Const) {
+            c = (Const) noeud;
+        }
+        resultat += "CMOVE("+c.getValeur()+", r0) \n"
                 + "PUSH(r0) \n";
         return resultat;
     }
 
     private String genererLire(Noeud noeud, Tds tds) {
+     // TODO Auto-generated method stub
         return null;
     }
 

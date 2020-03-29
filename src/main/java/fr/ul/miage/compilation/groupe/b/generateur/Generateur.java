@@ -108,8 +108,11 @@ public class Generateur {
     }
 
     private String genererBloc(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+    	String resultat = "";
+    	for (int i = 0; i < noeud.getFils().size(); i++) {
+            resultat += genererCode(noeud.getFils().get(i), tds);
+        }
+        return resultat;
     }
 
     private String genererAffectation(Noeud noeud, Tds tds) {
@@ -128,13 +131,15 @@ public class Generateur {
     }
 
     private String genererEcrire(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+    	String resultat = "";
+        resultat += genererCode(noeud.getFils().get(1), tds)
+                + "POP(r0) \n"
+        		+ "WRINT() \n";
+        return resultat;
     }
 
     private String genererRetourne(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+    	 return null;
     }
 
     private String genererPlus(Noeud noeud, Tds tds) {
@@ -194,8 +199,8 @@ public class Generateur {
 
     private String genererConst(Noeud noeud, Tds tds) {
         String resultat ="";
-        resultat += "CMOVE(a.val, r0) \n"
-                + "PUSH(r0) \n";
+        resultat += "\tCMOVE(a.val, r0)\n"
+                + "\tPUSH(r0)\n";
         return resultat;
     }
 
@@ -204,8 +209,9 @@ public class Generateur {
     }
 
     private String genererAppel(Noeud noeud, Tds tds) {
-        // TODO Auto-generated method stub
-        return null;
+    	 String resultat = "";
+         resultat += "\tCALL(" + noeud.getLabel() + ")\n";
+         return resultat;
     }
 
     private String genererData(Tds tds) {

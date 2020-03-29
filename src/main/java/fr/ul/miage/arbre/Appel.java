@@ -34,17 +34,5 @@ public class Appel extends NoeudObj {
 		setValeur(valeur);
 		setFils(new ArrayList<Noeud>());
 	}
-	/**
-	 * @return le fils (unique)
-	 */
-	public Noeud getLeFils() {
-		return getFils().get(0);
-	}
-	/**
-	 * Ajoute un fils (unique)
-	 */
-	public void setLeFils(Noeud n) {
-		getFils().add(0, n);
-	}
 	
 }

@@ -74,6 +74,15 @@ public class Tds {
 		}
 		return res;
 	}
+	
+	/**
+     * retourne la table des symboles
+     * @return table
+     */
+    public Map<String, List<Symbole>> getTable(){
+        return table;
+    }
+    
 	/**
 	 * Ajouter un symbole
 	 * @param nom
@@ -82,7 +91,7 @@ public class Tds {
 	 * @return le symbole ajouté
 	 * @throws Exception si le symbole existe déjà
 	 */
-	public Symbole ajouter(String nom, String cat, String scope) throws Exception{
+	public Symbole ajouter(String nom, String cat, String scope, String type) throws Exception{
 		Symbole res = verifier(nom, scope);
 		if (res != null) {
 			throw new Exception("Le symbole existe déjà : " + res.getNom());
@@ -91,7 +100,7 @@ public class Tds {
 			table.put(nom, new ArrayList<Symbole>());
 		}
 		List<Symbole> l = table.get(nom);
-		res = new Symbole(nom, cat, scope);
+		res = new Symbole(nom, cat, scope, type);
 		l.add(res);
 		return res;
 	}
@@ -109,5 +118,4 @@ public class Tds {
 		res.append("------------------ \n");
 		return res.toString();
 	}
-
 }

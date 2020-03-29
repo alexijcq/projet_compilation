@@ -10,17 +10,17 @@ public class Main_Code7 {
     public static void main(String[] args) throws Exception {       
         Tds tds = new Tds();
 
-        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION,Symbole.CAT_GLOBAL);
-        Symbole s2 = tds.ajouter("a",Symbole.CAT_GLOBAL,Symbole.CAT_GLOBAL);
+        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION,Symbole.CAT_GLOBAL,"void");
+        Symbole s2 = tds.ajouter("a",Symbole.CAT_GLOBAL,Symbole.CAT_GLOBAL,"int");
         s2.set_valeur(10);
-        Symbole s3 = tds.ajouter("f",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+        Symbole s3 = tds.ajouter("f",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL,"int");
         s3.set_nbparam(1);
         s3.set_nbloc(2);
-        Symbole s4 = tds.ajouter("i",Symbole.CAT_PARAMETRE,"f");
+        Symbole s4 = tds.ajouter("i",Symbole.CAT_PARAMETRE,"f","int");
         s4.set_rang(0);
-        Symbole s5 = tds.ajouter("x",Symbole.CAT_LOCAL,"f");
+        Symbole s5 = tds.ajouter("x",Symbole.CAT_LOCAL,"f","int");
         s5.set_rang(0);
-        Symbole s6 = tds.ajouter("y",Symbole.CAT_LOCAL,"f");
+        Symbole s6 = tds.ajouter("y",Symbole.CAT_LOCAL,"f","int");
         s6.set_rang(1);
         System.out.println(tds.toString());
     
@@ -67,7 +67,7 @@ public class Main_Code7 {
         
         Appel ap7 = new Appel(f7);
         Const c7_3 = new Const(3);
-        ap7.setLeFils(c7_3);
+        ap7.ajouterUnFils(c7_3);
         Ecrire ec7 = new Ecrire();
         ec7.setLeFils(a7);
         main7.ajouterUnFils(ap7);

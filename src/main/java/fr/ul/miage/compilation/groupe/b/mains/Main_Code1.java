@@ -9,7 +9,7 @@ public class Main_Code1 {
 
     public static void main(String[] args) throws Exception{
         Tds tds = new Tds();
-        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL,"void");
         System.out.println(tds.toString());
         
         Prog prog = new Prog();

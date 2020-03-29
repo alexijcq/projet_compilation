@@ -10,16 +10,16 @@ public class Main_Code8 {
     public static void main(String[] args) throws Exception {
         Tds tds = new Tds();
 
-        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION,Symbole.CAT_GLOBAL);
-        Symbole s2 = tds.ajouter("a",Symbole.CAT_GLOBAL,Symbole.CAT_GLOBAL);
-        Symbole s3 = tds.ajouter("f",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL);
+        Symbole s = tds.ajouter("main",Symbole.CAT_FONCTION,Symbole.CAT_GLOBAL,"void");
+        Symbole s2 = tds.ajouter("a",Symbole.CAT_GLOBAL,Symbole.CAT_GLOBAL,"int");
+        Symbole s3 = tds.ajouter("f",Symbole.CAT_FONCTION, Symbole.SCOPE_GLOBAL,"int");
         s3.set_nbparam(2);
         s3.set_nbloc(1);
-        Symbole s4 = tds.ajouter("x",Symbole.CAT_LOCAL,"f");
+        Symbole s4 = tds.ajouter("x",Symbole.CAT_LOCAL,"f","int");
         s4.set_rang(0);
-        Symbole s5 = tds.ajouter("i",Symbole.CAT_PARAMETRE,"f");
+        Symbole s5 = tds.ajouter("i",Symbole.CAT_PARAMETRE,"f","int");
         s5.set_rang(0);
-        Symbole s6 = tds.ajouter("j",Symbole.CAT_PARAMETRE,"f");
+        Symbole s6 = tds.ajouter("j",Symbole.CAT_PARAMETRE,"f","int");
         s6.set_rang(1);
         
         System.out.println(tds.toString());

@@ -58,11 +58,12 @@ public class Symbole {
 	public Symbole() {
 		prop = new Properties();
 	}
-	public Symbole(String nom, String cat, String scope) {
+	public Symbole(String nom, String cat, String scope, String type) {
 		prop = new Properties();
 		prop.put(PROP_NOM, nom);
 		prop.put(PROP_CATEGORIE, cat);
 		prop.put(PROP_SCOPE, scope);
+		prop.put(PROP_TYPE, type);
 	}
 
 	//methods
@@ -100,6 +101,13 @@ public class Symbole {
 		}
 		return res;
 	}
+	/**
+     * fournit le type d'une variable
+     * @return
+     */
+    public String get_type() {
+        return prop.getProperty(PROP_TYPE);
+    }
 	/**
 	 * fournit le rang d'un paramètre ou d'une variable locale d'une variable globale
 	 * @return

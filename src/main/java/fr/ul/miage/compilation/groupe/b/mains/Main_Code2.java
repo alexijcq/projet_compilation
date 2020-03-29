@@ -38,8 +38,7 @@ public class Main_Code2 {
         Afficheur.afficher(prog);
         
         Generateur g = new Generateur();
-        g.generate(prog,tds);
-        System.out.println(g.toString());
+        System.out.println(g.generate(prog,tds));
     }
 
 }

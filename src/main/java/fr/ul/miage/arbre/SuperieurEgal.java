@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class SuperieurEgal extends Noeud0 {
 	//constructeurs
-	public SuperieurEgal() {
+	public SuperieurEgal(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.SUPE);
 		setFils(new ArrayList<>());
 	}

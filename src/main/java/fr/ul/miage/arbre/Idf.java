@@ -27,7 +27,8 @@ package main.java.fr.ul.miage.arbre;
  */
 public class Idf extends NoeudObj {
 	//constructeur
-	public Idf(Object valeur) {
+	public Idf(Object valeur, Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.IDF);
 		setValeur(valeur);
 		setFils(null); //feuille

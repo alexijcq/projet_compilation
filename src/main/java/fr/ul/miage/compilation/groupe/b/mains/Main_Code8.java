@@ -25,21 +25,23 @@ public class Main_Code8 {
         System.out.println(tds.toString());
 
         Noeud prog = new Prog();
-        Noeud f8 = new Fonction("f");
-        Noeud main8 = new Fonction("main");
-        Affectation aff8 = new Affectation();
-        Idf x8 = new Idf("x");
-        Plus plus8 = new Plus();
-        Idf i8 = new Idf("i");
-        Idf j8 = new Idf("j");
+        Idf a8 = new Idf("a",prog);
+        
+        Noeud f8 = new Fonction("f",prog);
+        Idf i8 = new Idf("i",f8);
+        Idf j8 = new Idf("j",f8);
+        
+        Affectation aff8 = new Affectation(f8);
+        Idf x8 = new Idf("x",f8);
+        Plus plus8 = new Plus(aff8);
         plus8.setFilsGauche(i8);
         plus8.setFilsDroit(j8);
         aff8.setFilsGauche(x8);
         aff8.setFilsDroit(plus8);
 
-        Retour ret8 = new Retour(f8);
-        Plus plus8_1 = new Plus();
-        Const c8 = new Const(10);
+        Retour ret8 = new Retour("retourf",f8);
+        Plus plus8_1 = new Plus(ret8);
+        Const c8 = new Const(10,plus8_1);
         plus8_1.setFilsGauche(x8);
         plus8_1.setFilsDroit(c8);
         ret8.ajouterUnFils(plus8_1);
@@ -47,24 +49,25 @@ public class Main_Code8 {
         f8.ajouterUnFils(aff8);
         f8.ajouterUnFils(ret8);
 
-        Affectation aff8_1 = new Affectation();
-        Idf a8 = new Idf("a");
-        Appel appel8 = new Appel(f8);
-        Const c8_1 = new Const(1);
-        Const c8_2 = new Const(2);
+
+        Noeud main = new Fonction("main",prog);
+        Affectation aff8_1 = new Affectation(main);
+        Appel appel8 = new Appel(f8,aff8_1);
+        Const c8_1 = new Const(1,appel8);
+        Const c8_2 = new Const(2,appel8);
         appel8.ajouterUnFils(c8_1);
         appel8.ajouterUnFils(c8_2);
         aff8_1.setFilsGauche(a8);
         aff8_1.setFilsDroit(appel8);
 
-        Ecrire e8 = new Ecrire();
+        Ecrire e8 = new Ecrire(main);
         e8.ajouterUnFils(a8);
 
-        main8.ajouterUnFils(aff8_1);
-        main8.ajouterUnFils(e8);
+        main.ajouterUnFils(aff8_1);
+        main.ajouterUnFils(e8);
 
         prog.ajouterUnFils(f8);
-        prog.ajouterUnFils(main8);
+        prog.ajouterUnFils(main);
 
         Afficheur.afficher(prog);
         

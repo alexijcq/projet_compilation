@@ -27,32 +27,29 @@ public class Main_Code7 {
         
         Prog prog = new Prog();
         
-        Idf a7 = new Idf("a");
-        Affectation aff7 = new Affectation();
-        Const c7 = new Const(10);
-        aff7.setFilsGauche(a7);
-        aff7.setFilsDroit(c7);
+        Idf a7 = new Idf("a",prog);
         
-        Fonction f7 = new Fonction("f");
-        Idf i7 = new Idf("i");
-        Idf x7 = new Idf('x');
-        Affectation aff7_1 = new Affectation();
-        Const c7_1 = new Const(1);
+        Fonction f7 = new Fonction("f",prog);
+        Idf i7 = new Idf("i",f7);
+        Idf x7 = new Idf('x',f7);
+        Idf y7 = new Idf('y',f7);
+        Affectation aff7_1 = new Affectation(f7);
+        Const c7_1 = new Const(1,aff7_1);
         aff7_1.setFilsGauche(x7);
         aff7_1.setFilsDroit(c7_1);
         
-        Idf y7 = new Idf('y');
-        Affectation aff7_2 = new Affectation();
-        Const c7_2 = new Const(1);
+        
+        Affectation aff7_2 = new Affectation(f7);
+        Const c7_2 = new Const(1,aff7_2);
         aff7_2.setFilsGauche(y7);
         aff7_2.setFilsDroit(c7_2);
         
-        Affectation aff7_3 = new Affectation();
+        Affectation aff7_3 = new Affectation(f7);
         aff7_3.setFilsGauche(a7);
-        Plus add7 = new Plus();
+        Plus add7 = new Plus(aff7_3);
         add7.setFilsGauche(i7);
         
-        Plus add7_1 = new Plus();
+        Plus add7_1 = new Plus(add7);
         add7_1.setFilsGauche(x7);
         add7_1.setFilsDroit(y7);
         add7.setFilsDroit(add7_1);
@@ -63,18 +60,18 @@ public class Main_Code7 {
         f7.ajouterUnFils(aff7_2);
         f7.ajouterUnFils(aff7_3);
         
-        Fonction main7 = new Fonction("main");
+        Fonction main = new Fonction("main",prog);
         
-        Appel ap7 = new Appel(f7);
-        Const c7_3 = new Const(3);
+        Appel ap7 = new Appel(f7,main);
+        Const c7_3 = new Const(3,ap7);
         ap7.ajouterUnFils(c7_3);
-        Ecrire ec7 = new Ecrire();
+        Ecrire ec7 = new Ecrire(main);
         ec7.setLeFils(a7);
-        main7.ajouterUnFils(ap7);
-        main7.ajouterUnFils(ec7);
+        main.ajouterUnFils(ap7);
+        main.ajouterUnFils(ec7);
         
         prog.ajouterUnFils(f7);
-        prog.ajouterUnFils(main7);
+        prog.ajouterUnFils(main);
 
         Afficheur.afficher(prog);
         

@@ -31,7 +31,8 @@ class NoeudInt extends Noeud {
 	//attribut
 	private int valeur;
 	//constructeur
-	protected NoeudInt() {
+	protected NoeudInt(Noeud noeudPere) {
+	    super(noeudPere);
 		setValeur(0);
 	}
 	/* (non-Javadoc)

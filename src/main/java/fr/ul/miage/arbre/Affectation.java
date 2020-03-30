@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Affectation extends Noeud0 {
 	//constructeurs
-	public Affectation() {
+	public Affectation(Noeud noeudPere) {
+	    super(noeudPere);
 		setCat(Categories.AFF);
 		setFils(new ArrayList<>(2));
 	}

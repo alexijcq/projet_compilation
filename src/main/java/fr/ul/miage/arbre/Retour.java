@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Retour extends NoeudObj {
 	//constructeur
-	public Retour(Object valeur) {
+	public Retour(Object valeur, Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.RET);
 		setValeur(valeur);
 		setFils(new ArrayList<Noeud>());

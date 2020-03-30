@@ -19,28 +19,28 @@ public class Main_Code6 {
         System.out.println(tds);
         
         Noeud prog = new Prog();
-        Noeud main6 = new Fonction("main");
-        Affectation aff6 = new Affectation();
-        Idf i6 = new Idf("i");
-        Const c6 = new Const(0);
+        Idf i6 = new Idf("i",prog);
+        Idf n6 = new Idf("n",prog);
+        
+        Noeud main = new Fonction("main",prog);
+        Affectation aff6 = new Affectation(main);
+        Const c6 = new Const(0,aff6);
         aff6.setFilsGauche(i6);
         aff6.setFilsDroit(c6);
 
-        TantQue tq6 = new TantQue(1);
-        Inferieur inf6 = new Inferieur();
-        Idf n6 = new Idf("n");
+        TantQue tq6 = new TantQue(1,main);
+        Inferieur inf6 = new Inferieur(tq6);
         inf6.setFilsGauche(i6);
         inf6.setFilsDroit(n6);
 
-
-        Bloc b6 = new Bloc();
+        Bloc b6 = new Bloc(tq6);
         tq6.ajouterUnFils(inf6);
         tq6.ajouterUnFils(b6);
-        Ecrire e6 = new Ecrire();
+        Ecrire e6 = new Ecrire(b6);
         e6.setLeFils(i6);
-        Affectation aff6_1 = new Affectation();
-        Plus plus6 = new Plus();
-        Const c6_1 = new Const(1);
+        Affectation aff6_1 = new Affectation(b6);
+        Plus plus6 = new Plus(aff6_1);
+        Const c6_1 = new Const(1,plus6);
         plus6.setFilsGauche(i6);
         plus6.setFilsDroit(c6_1);
         aff6_1.setFilsGauche(i6);
@@ -54,10 +54,10 @@ public class Main_Code6 {
         b6.ajouterUnFils(e6);
         b6.ajouterUnFils(aff6_1);
 
-        main6.ajouterUnFils(aff6);
-        main6.ajouterUnFils(tq6);
+        main.ajouterUnFils(aff6);
+        main.ajouterUnFils(tq6);
 
-        prog.ajouterUnFils(main6);
+        prog.ajouterUnFils(main);
         Afficheur.afficher(prog);
         
         Generateur g = new Generateur();

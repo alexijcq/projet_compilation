@@ -13,7 +13,7 @@ public class Main_Code1 {
         System.out.println(tds.toString());
         
         Prog prog = new Prog();
-        Fonction main = new Fonction("main");
+        Fonction main = new Fonction("main",prog);
         prog.ajouterUnFils(main);
         Afficheur.afficher(prog);
         

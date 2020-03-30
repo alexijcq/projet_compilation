@@ -3,7 +3,6 @@ package main.java.fr.ul.miage.compilation.groupe.b.mains;
 import main.java.fr.ul.miage.compilation.groupe.b.generateur.*;
 import main.java.fr.ul.miage.tds.*;
 import main.java.fr.ul.miage.arbre.*;
-import main.java.fr.ul.miage.arbre.Afficheur;
 
 public class Main_Code3 {
 
@@ -19,32 +18,24 @@ public class Main_Code3 {
         System.out.println(tds);
         
         Prog prog = new Prog();
-        Idf i3 = new Idf("i");
-        Idf j3 = new Idf("j");
-        Idf k3 = new Idf("k");
-        Idf l3 = new Idf("l");
-        Const c3 = new Const(20);
-        Const c3_1 = new Const(10);
-        Affectation aff3 = new Affectation();
-        aff3.setFilsGauche(j3);
-        aff3.setFilsDroit(c3);
-        Affectation aff3_1 = new Affectation();
-        aff3_1.setFilsGauche(i3);
-        aff3_1.setFilsDroit(c3_1);
+        Idf i3 = new Idf("i",prog);
+        Idf j3 = new Idf("j",prog);
+        Idf k3 = new Idf("k",prog);
+        Idf l3 = new Idf("l",prog);
 
-        Fonction main = new Fonction("main");
-        Affectation aff3_2 = new Affectation();
-        Const c3_2 = new Const(2);
+        Fonction main = new Fonction("main",prog);
+        Affectation aff3_2 = new Affectation(main);
+        Const c3_2 = new Const(2,aff3_2);
         aff3_2.setFilsGauche(k3);
         aff3_2.setFilsDroit(c3_2);
         main.ajouterUnFils(aff3_2);
 
-        Affectation aff3_3 = new Affectation();
-        Const c3_3 = new Const(3);
+        Affectation aff3_3 = new Affectation(main);
         aff3_3.setFilsGauche(l3);
-        Plus add3 = new Plus();
+        Plus add3 = new Plus(aff3_3);
         add3.setFilsGauche(i3);
-        Multiplication mul3 = new Multiplication();
+        Multiplication mul3 = new Multiplication(add3);
+        Const c3_3 = new Const(3,mul3);
         mul3.setFilsGauche(c3_3);
         mul3.setFilsDroit(j3);
         add3.setFilsDroit(mul3);

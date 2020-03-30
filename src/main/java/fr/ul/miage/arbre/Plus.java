@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Plus extends Noeud0 {
 	//constructeurs
-	public Plus() {
+	public Plus(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.PLUS);
 		setFils(new ArrayList<>());
 	}

@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Ecrire extends Noeud0 {
 	//constructeurs
-	public Ecrire() {
+	public Ecrire(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.ECR);
 		setFils(new ArrayList<>());
 	}

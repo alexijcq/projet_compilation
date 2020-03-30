@@ -31,6 +31,7 @@ import java.util.ArrayList;
 public class Prog extends Noeud0 {
 	//constructeurs
 	public Prog() {
+        super(null);
 		setCat(Categories.PROG);
 		setFils(new ArrayList<>());
 	}

@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Inferieur extends Noeud0 {
 	//constructeurs
-	public Inferieur() {
+	public Inferieur(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.INF);
 		setFils(new ArrayList<>());
 	}

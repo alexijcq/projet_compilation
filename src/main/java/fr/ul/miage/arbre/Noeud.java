@@ -36,6 +36,11 @@ public abstract class Noeud {
 	//attributs
 	private Categories cat;
 	private List<Noeud> fils;
+	private Noeud noeudPere;
+	
+	public Noeud(Noeud noeudPere) {
+	    this.noeudPere = noeudPere;
+	}
 	
 	//abstract
 	abstract public String  getLabel();
@@ -48,6 +53,13 @@ public abstract class Noeud {
 	 */
 	public boolean ajouterUnFils(Noeud f) {
 		return getFils().add(f);
+	}
+	/**
+     *Retourne le noeud père
+     * @return noeud père
+     */
+	public Noeud getNoeudPere() {
+	    return noeudPere;
 	}
 	/**
 	 * Ajouter une liste de fils

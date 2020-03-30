@@ -29,7 +29,8 @@ package main.java.fr.ul.miage.arbre;
  */
 class Noeud0 extends Noeud {
 	//constructeur
-	protected Noeud0() {
+	protected Noeud0(Noeud noeudPere) {
+	    super(noeudPere);
 	}
 
 	/* (non-Javadoc)

@@ -29,12 +29,13 @@ import java.util.ArrayList;
  */
 public class TantQue extends NoeudInt {
 	//constructeur
-	public TantQue(int valeur) {
+	public TantQue(int valeur, Noeud noeudPere) {
+        super(noeudPere);
 		setValeur(valeur);
 		setCat(Categories.TQ);
 		setFils(new ArrayList<Noeud>(2));
 		this.getFils().add(0, null);// vide par défaut
-		this.getFils().add(1, new Bloc());// vide par défaut
+		this.getFils().add(1, new Bloc(this));// vide par défaut
 	}
 	//methodes
 	/**

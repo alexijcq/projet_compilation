@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Appel extends NoeudObj {
 	//constructeur
-	public Appel(Object valeur) {
+	public Appel(Object valeur, Noeud noeudPere) {
+	    super(noeudPere);
 		setCat(Categories.APPEL);
 		setValeur(valeur);
 		setFils(new ArrayList<Noeud>());

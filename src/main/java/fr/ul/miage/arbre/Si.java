@@ -29,13 +29,14 @@ import java.util.ArrayList;
  */
 public class Si extends NoeudInt {
 	//constructeur
-	public Si(int valeur) {
+	public Si(int valeur, Noeud noeudPere) {
+        super(noeudPere);
 		setValeur(valeur);
 		setCat(Categories.SI);
 		setFils(new ArrayList<Noeud>(3));
 		this.getFils().add(0, null);
-		this.getFils().add(1, new Bloc());// vide par défaut
-		this.getFils().add(2, new Bloc());// vide par défaut
+		this.getFils().add(1, new Bloc(this));// vide par défaut
+		this.getFils().add(2, new Bloc(this));// vide par défaut
 	}
 	//methodes
 	/**

@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Egal extends Noeud0 {
 	//constructeurs
-	public Egal() {
+	public Egal(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.EG);
 		setFils(new ArrayList<>());
 	}

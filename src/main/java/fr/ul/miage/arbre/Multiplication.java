@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Multiplication extends Noeud0 {
 	//constructeurs
-	public Multiplication() {
+	public Multiplication(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.MUL);
 		setFils(new ArrayList<>());
 	}

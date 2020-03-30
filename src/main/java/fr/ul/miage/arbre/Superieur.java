@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Superieur extends Noeud0 {
 	//constructeurs
-	public Superieur() {
+	public Superieur(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.SUP);
 		setFils(new ArrayList<>());
 	}

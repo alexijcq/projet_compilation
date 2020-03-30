@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Division extends Noeud0 {
 	//constructeurs
-	public Division() {
+	public Division(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.DIV);
 		setFils(new ArrayList<>());
 	}

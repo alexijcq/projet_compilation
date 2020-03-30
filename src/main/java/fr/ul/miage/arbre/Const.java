@@ -28,7 +28,8 @@ package main.java.fr.ul.miage.arbre;
  */
 public class Const extends NoeudInt {
 	//constructeur
-	public Const(int valeur) {
+	public Const(int valeur,Noeud noeudPere) {
+        super(noeudPere);
 		setValeur(valeur);
 		setCat(Categories.CONST);
 		setFils(null);

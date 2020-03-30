@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Different extends Noeud0 {
 	//constructeurs
-	public Different() {
+	public Different(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.DIF);
 		setFils(new ArrayList<>());
 	}

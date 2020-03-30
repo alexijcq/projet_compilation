@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Fonction extends NoeudObj{
 	//constructeur
-	public Fonction(Object valeur) {
+	public Fonction(Object valeur,Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.FONCTION);
 		setValeur(valeur);
 		setFils(new ArrayList<Noeud>());

@@ -27,7 +27,8 @@ package main.java.fr.ul.miage.arbre;
  */
 public class Lire extends Noeud0 {
 	//constructeurs
-	public Lire() {
+	public Lire(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.LIRE);
 		setFils(null);//feuille
 	}

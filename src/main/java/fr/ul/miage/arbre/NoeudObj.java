@@ -32,7 +32,8 @@ class NoeudObj extends Noeud {
 	//attribut
 	private Object valeur;
 	//constructeur
-	protected NoeudObj() {
+	protected NoeudObj(Noeud noeudPere) {
+	    super(noeudPere);
 		setValeur(null);
 	}
 

@@ -1,5 +1,6 @@
 package main.java.fr.ul.miage.compilation.groupe.b.generateur;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -88,7 +89,7 @@ public class Generateur {
 			resultat = genererDiff(noeud,tds);
 			break;
 		case IDF:
-			resultat = genererIdf(noeud);
+			resultat = genererIdf(noeud,tds);
 			break;
 		case CONST:
 			resultat = genererConst(noeud);
@@ -97,7 +98,7 @@ public class Generateur {
 			resultat = genererLire(noeud);
 			break;
 		case APPEL:
-			resultat = genererAppel(noeud);
+			resultat = genererAppel(noeud,tds);
 			break;
 		default:
 			break;
@@ -107,7 +108,7 @@ public class Generateur {
 
 	private String genererFonction(Noeud noeud,Tds tds) {
 	    String resultat = "\n\t|Génération de fonction\n";
-        Fonction f = new Fonction("");
+        Fonction f = new Fonction("",null);
         if (noeud instanceof Fonction) {
             f = (Fonction) noeud;
         }
@@ -131,19 +132,19 @@ public class Generateur {
 
 	private String genererAffectation(Noeud noeud,Tds tds) {
 	    String resultat = "\n\t|Génération du Affectation\n";
-		Idf i = new Idf(0);
+		Idf i = new Idf(0,null);
 		if(noeud.getFils().get(0) instanceof Idf) {
 			i = (Idf) noeud.getFils().get(0);
 		}
 		resultat += genererCode(noeud.getFils().get(1),tds)
 				+ "\tPOP(R0)\n"
-				+ "\tST(R0, "+i.getValeur()+") |Fin Affectation\n"; 
+				+ "\tST(R0, "+rechercheFonction(i, tds)+i.getValeur()+") |Fin Affectation\n"; 
 		return resultat;
 	}
 
 	private String genererSi(Noeud noeud,Tds tds) {
 	    String resultat = "\n\t|Génération du Si\n";
-	    Si s = new Si(0);
+	    Si s = new Si(0,null);
         if(noeud instanceof Si) {
             s = (Si) noeud;
         }
@@ -160,7 +161,7 @@ public class Generateur {
 
 	private String genererTantque(Noeud noeud,Tds tds) {
 	    String resultat = "\n\t|Génération du Tant Que\n";
-		TantQue tq = new TantQue(0);
+		TantQue tq = new TantQue(0,null);
         if (noeud instanceof TantQue) {
             tq = (TantQue) noeud;
         }
@@ -184,7 +185,7 @@ public class Generateur {
 
     private String genererRetourne(Noeud noeud,Tds tds) {
         String resultat = "\n\t|Génération du Retourne\n";
-        Retour r = new Retour("");
+        Retour r = new Retour("",null);
         if (noeud instanceof Retour) {
             r = (Retour) noeud;
         }
@@ -304,20 +305,20 @@ public class Generateur {
         return resultat;
     }
 
-    private String genererIdf(Noeud noeud) {
+    private String genererIdf(Noeud noeud, Tds tds) {
         String resultat = "\n\t|Génération du Idf\n";
-        Idf i = new Idf(0);
+        Idf i = new Idf(0,null);
         if (noeud instanceof Idf) {
             i = (Idf) noeud;
         }
-        resultat += "\tLD("+i.getValeur()+", R0)\n"
+        resultat += "\tLD("+rechercheFonction((Idf)noeud, tds)+i.getValeur()+", R0)\n"
                 + "\tPUSH(R0) |Fin Idf\n";
         return resultat;
     }
 
     private String genererConst(Noeud noeud) {
         String resultat = "\n\t|Génération du Const\n";
-        Const c = new Const(0);
+        Const c = new Const(0,null);
         if (noeud instanceof Const) {
             c = (Const) noeud;
         }
@@ -333,15 +334,34 @@ public class Generateur {
         return resultat;
     }
 
-    private String genererAppel(Noeud noeud) { //PARAMETRES ?
+    private String genererAppel(Noeud noeud, Tds tds) { //PARAMETRES ?
         String resultat = "\n\t|Génération du Appel\n";
-        Appel a = new Appel("");
+        Appel a = new Appel("",null);
         if (noeud instanceof Appel) {
             a = (Appel) noeud;
         }
-        Fonction f = new Fonction("");
+        Fonction f = new Fonction("",null);
         if (a.getValeur() instanceof Fonction) {
             f = (Fonction) a.getValeur();
+        }
+        if(noeud.getFils() != null && !noeud.getFils().isEmpty()) {
+            for(Noeud n : noeud.getFils()) {
+                resultat+= genererCode(n,tds);
+            }
+            
+            List<String> noms = new ArrayList<String>();
+            for( String k : tds.getTable().keySet()) {
+                List<Symbole> i = tds.getTable().get(k);
+                for(Symbole s : i) {
+                    if(s.get_type() == "int" && s.getScope()==f.getValeur() && s.getCat()==Symbole.CAT_PARAMETRE) {
+                        noms.add(f.getValeur()+s.getNom());
+                    }
+                  }
+            }
+            for(int j = noms.size()-1; j >=0;j--) {
+                resultat += "\tPOP(r0)\n"
+                        + "\tST(r0,"+noms.get(j)+")\n";
+            }
         }
         resultat += "\tCALL(" + f.getValeur() + ") |Fin Appel\n";
         return resultat;
@@ -371,16 +391,41 @@ public class Generateur {
         for( String k : tds.getTable().keySet()) {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
+                if(s.get_type() == "int" && s.getScope()== f.getValeur() && s.getCat()==Symbole.CAT_PARAMETRE) {
+                    resultat += f.getValeur()+s.getNom() +":\n";
+                }
+              }
+        }
+        for( String k : tds.getTable().keySet()) {
+            List<Symbole> i = tds.getTable().get(k);
+            for(Symbole s : i) {
                 if(s.get_type() == "int" && s.getScope()== f.getValeur() && s.getCat()==Symbole.CAT_LOCAL) {
-                    if(s.get_valeur() != 0) {
-                        resultat += s.getNom() +": LONG("+s.get_valeur()+")\n";
-                    }else {
-                        resultat += s.getNom() +":\n";
-                    }
+                        resultat += f.getValeur()+s.getNom() +":\n";
                 }
               }
         }
         return resultat;
+    }
+    
+    private String rechercheFonction(Idf n, Tds tds) {
+        Noeud test = n.getNoeudPere();
+        String res = "";
+        for( String k : tds.getTable().keySet()) {
+            List<Symbole> i = tds.getTable().get(k);
+            for(Symbole s : i) {
+                if(s.getNom() == n.getValeur() && s.get_type() == "int" && s.getCat()==Symbole.CAT_GLOBAL) {
+                        return "";
+                }
+              }
+        }
+        while (test != null && !(test instanceof Fonction)) {
+            test = test.getNoeudPere();
+        }
+        if(test != null) {
+            Fonction f = (Fonction) test;
+            res = (String) f.getValeur();
+        }
+        return res;
     }
 
 }

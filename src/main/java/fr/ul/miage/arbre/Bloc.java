@@ -29,7 +29,8 @@ import java.util.ArrayList;
  */
 public class Bloc extends Noeud0 {
 	//constructeurs
-	public Bloc() {
+	public Bloc(Noeud noeudPere) {
+        super(noeudPere);
 		setCat(Categories.BLOC);
 		setFils(new ArrayList<>());
 	}

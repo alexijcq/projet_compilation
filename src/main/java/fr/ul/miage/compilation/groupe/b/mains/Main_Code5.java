@@ -15,32 +15,32 @@ public class Main_Code5 {
         
         
         Noeud prog = new Prog();
-        Idf i5 = new Idf("i");
+        Idf i5 = new Idf("i",prog);
         
-        Noeud main = new Fonction("main");
+        Noeud main = new Fonction("main",prog);
         
-        Affectation aff5 = new Affectation();
-        Lire lire5 = new Lire();
+        Affectation aff5 = new Affectation(main);
+        Lire lire5 = new Lire(aff5);
         aff5.setFilsGauche(i5);
         aff5.setFilsDroit(lire5);
         
-        Si si5 = new Si(1);
-        Noeud c5 = new Const(10);
-        Inferieur inf5 = new Inferieur();
+        Si si5 = new Si(1,main);
+        Superieur inf5 = new Superieur(si5);
+        Noeud c5 = new Const(10,inf5);
         inf5.setFilsGauche(i5);
         inf5.setFilsDroit(c5);
         si5.setCondition(inf5);
         
-        Bloc bl5 = new Bloc();
-        Ecrire ec5 = new Ecrire();
-        Const c5_1 = new Const(1);
+        Bloc bl5 = new Bloc(si5);
+        Ecrire ec5 = new Ecrire(bl5);
+        Const c5_1 = new Const(1,bl5);
         ec5.setLeFils(c5_1);
         bl5.ajouterUnFils(ec5);
         si5.setBlocAlors(bl5);
         
-        Bloc bl5_1 = new Bloc();
-        Ecrire ec5_1 = new Ecrire();
-        Const c5_2 = new Const(2);
+        Bloc bl5_1 = new Bloc(si5);
+        Ecrire ec5_1 = new Ecrire(bl5_1);
+        Const c5_2 = new Const(2,bl5_1);
         ec5_1.setLeFils(c5_2);
         bl5_1.ajouterUnFils(ec5_1);
         si5.setBlocSinon(bl5_1);

@@ -19,7 +19,7 @@ public class Generateur {
 		resultat += ".include beta.uasm \n" + ".include intio.uasm \n" + ".options tty \n\n" + "CMOVE(pile,sp) \n"
 				+ "BR(debut) \n";
 		// generation du code pour les symboles du tds
-		resultat += genererDataGlobal(tds);
+		resultat += genererData(tds);
 		// appel de la fonction main
 		resultat += "debut :\n" 
 		        + "\tCALL(main)\n" 
@@ -113,7 +113,6 @@ public class Generateur {
             f = (Fonction) noeud;
         }
         resultat += f.getValeur()+" :\n";
-        resultat += genererDataLocal(f, tds);
         for (int i = 0; i < noeud.getFils().size(); i++) {
             resultat += genererCode(noeud.getFils().get(i),tds);
         }
@@ -382,29 +381,33 @@ public class Generateur {
                 }
               }
         }
-        return resultat+"\n";
+        return resultat;
     }
     
-    private String genererDataLocal(Fonction f, Tds tds) {
+    private String genererDataLocal(Tds tds) {
         String resultat = "";
         
         for( String k : tds.getTable().keySet()) {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
-                if(s.get_type() == "int" && s.getScope()== f.getValeur() && s.getCat()==Symbole.CAT_PARAMETRE) {
-                    resultat += f.getValeur()+s.getNom() +":\n";
+                if(s.get_type() == "int" && s.getCat()==Symbole.CAT_PARAMETRE) {
+                    resultat += s.getScope()+s.getNom() +":\n";
                 }
               }
         }
         for( String k : tds.getTable().keySet()) {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
-                if(s.get_type() == "int" && s.getScope()== f.getValeur() && s.getCat()==Symbole.CAT_LOCAL) {
-                        resultat += f.getValeur()+s.getNom() +":\n";
+                if(s.get_type() == "int" && s.getCat()==Symbole.CAT_LOCAL) {
+                        resultat += s.getScope()+s.getNom() +":\n";
                 }
               }
         }
         return resultat;
+    }
+
+    private String genererData(Tds tds) {
+        return genererDataGlobal(tds)+genererDataLocal(tds)+"\n";
     }
     
     private String rechercheFonction(Idf n, Tds tds) {

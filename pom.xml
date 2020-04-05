@@ -4,7 +4,7 @@
     <artifactId>projet_compilation</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <description>Valentine wallah</description>
+    <description></description>
     <properties>
         <!-- On utilise Java8 -->
         <maven.compiler.source>1.8</maven.compiler.source>

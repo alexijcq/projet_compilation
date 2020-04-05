@@ -116,7 +116,7 @@ public class Generateur {
         for (int i = 0; i < noeud.getFils().size(); i++) {
             resultat += genererCode(noeud.getFils().get(i),tds);
         }
-        resultat +=  "\tHALT() |Fin Fonction\n";
+        resultat +=  "\tRTN() |Fin Fonction\n";
         return resultat;
 	}
 
@@ -151,7 +151,7 @@ public class Generateur {
 				+ "\tPOP(R0)\n"
 				+ "\tBF(R0, sinon"+s.getValeur()+")\n"
 				+ genererBloc(s.getFils().get(1),tds)
-				+ "\tJPM(fsi"+s.getValeur()+")\n"
+				+ "\tBR(fsi"+s.getValeur()+")\n"
 				+ "sinon"+s.getValeur()+" :\n"
 				+ genererBloc(s.getFils().get(2),tds)
 				+ "fsi"+s.getValeur()+" : |Fin Si\n";
@@ -169,7 +169,7 @@ public class Generateur {
 		        + "\tPOP(r0)\n"
 		        + "\tBF(r0, finboucle"+tq.getValeur()+")\n"
 		        + genererBloc(tq.getBloc(),tds)
-		        + "\tJMP(boucle"+tq.getValeur()+")\n"
+		        + "\tBR(boucle"+tq.getValeur()+")\n"
 		        + "finboucle"+tq.getValeur()+" : |Fin Tant Que\n";
 		return resultat;
 	}
@@ -189,7 +189,7 @@ public class Generateur {
             r = (Retour) noeud;
         }
         resultat += genererCode(r.getLeFils(),tds)
-                + "\tPUSH(r0) |Fin Retourne\n";
+                + "\t|Fin Retourne\n";
         return resultat;
     }
 
@@ -373,11 +373,7 @@ public class Generateur {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
                 if(s.get_type() == "int" && s.getScope()==Symbole.SCOPE_GLOBAL && s.getCat()==Symbole.CAT_GLOBAL) {
-                    if(s.get_valeur() != 0) {
                         resultat += s.getNom() +": LONG("+s.get_valeur()+")\n";
-                    }else {
-                        resultat += s.getNom() +":\n";
-                    }
                 }
               }
         }
@@ -391,7 +387,7 @@ public class Generateur {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
                 if(s.get_type() == "int" && s.getCat()==Symbole.CAT_PARAMETRE) {
-                    resultat += s.getScope()+s.getNom() +":\n";
+                    resultat += s.getScope()+s.getNom() +": LONG("+s.get_valeur()+")\n";
                 }
               }
         }
@@ -399,7 +395,7 @@ public class Generateur {
             List<Symbole> i = tds.getTable().get(k);
             for(Symbole s : i) {
                 if(s.get_type() == "int" && s.getCat()==Symbole.CAT_LOCAL) {
-                        resultat += s.getScope()+s.getNom() +":\n";
+                    resultat += s.getScope()+s.getNom() +": LONG("+s.get_valeur()+")\n";
                 }
               }
         }

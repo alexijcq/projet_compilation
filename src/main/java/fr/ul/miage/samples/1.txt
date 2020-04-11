@@ -1,0 +1,3 @@
+fonction void main( ) {
+
+}

@@ -1,0 +1,15 @@
+global int a;
+a = 10;
+
+fonction void f(param int i){
+    local x;
+    x = 1;
+    local y;
+    y = 1;
+    a = i+x+y;
+}
+
+fonction void main( ) {
+    f(3);
+    write(a);
+}

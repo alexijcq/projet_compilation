@@ -1,0 +1,55 @@
+.include beta.uasm 
+.include intio.uasm 
+.options tty 
+
+CMOVE(pile,sp) 
+BR(debut) 
+
+i: LONG(0)
+n: LONG(5)
+debut :
+    CALL(main)
+    HALT()
+
+main :
+    PUSH(LP)
+    PUSH(BP)
+    MOVE(SP,BP)
+    ALLOCATE(0)
+    CMOVE(0, r0) 
+    PUSH(r0)
+    POP(R0)
+    ST(r0,i)
+boucle1 : 
+    LD(i,r0)
+    PUSH(R0)
+    LD(n,r0)
+    PUSH(R0)
+    POP(R1)
+    POP(r0)
+    CMPLT(r0,r1,r2)
+    PUSH(r2)
+    POP(r0)
+    BF(r0, finboucle1)
+    LD(i,r0)
+    PUSH(R0)
+    POP(r0)
+    WRINT()
+    LD(i,r0)
+    PUSH(R0)
+    CMOVE(1, r0) 
+    PUSH(r0)
+    POP(R1)
+    POP(R0)
+    ADD(R0, R1, R2)
+    PUSH(r2)
+    POP(R0)
+    ST(r0,i)
+    BR(boucle1)
+finboucle1 :
+fin_fonc_main:
+    MOVE(BP,SP)
+    POP(BP)
+    POP(LP)
+    RTN()
+pile : 

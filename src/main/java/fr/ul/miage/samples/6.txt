@@ -1,0 +1,11 @@
+global int i;
+global int n;
+n = 5;
+
+fonction void main( ) {
+    i = 0;
+    while(i<n){
+        write(i);
+        i = i + 1;
+    }
+}

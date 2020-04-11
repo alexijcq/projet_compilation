@@ -1,0 +1,12 @@
+global int a;
+
+fonction int f(param int i, param int j){
+    local int x;
+    x = i+j;
+    return x+10;
+}
+
+fonction void main( ) {
+    a = f(1,2);
+    write(a);
+}

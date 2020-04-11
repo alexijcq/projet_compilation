@@ -1,0 +1,10 @@
+global int i;
+
+fonction void main( ) {
+    read(i);
+    if(i<10){
+        write(“1”);
+    else{
+        write(“2”);
+    }
+}

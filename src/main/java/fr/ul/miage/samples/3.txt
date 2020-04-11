@@ -1,0 +1,11 @@
+global int i;
+global int j;
+global int k;
+global int l;
+j = 20
+i = 10;
+
+fonction void main( ) {
+    k = 2;
+    l = i+3*j;
+}

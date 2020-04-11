@@ -13,7 +13,7 @@
         <!-- Où stocker la distribution binaire -->
         <project.bindist.dir>${project.basedir}/bindist</project.bindist.dir>
         <!-- Nom de la classe principale -->
-        <project.main.classname>fr.ul.miage.compilation.groupe.b.app.App</project.main.classname>
+        <project.main.classname>fr.ul.miage.compilation.groupe.b.mains</project.main.classname>
         <!-- Nom de la classe principale -->
         <project.bin.appname>${project.artifactId}</project.bin.appname>
     </properties>
